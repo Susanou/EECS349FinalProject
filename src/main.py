@@ -3,11 +3,9 @@ from authentication.auth import obtain_cookies_and_threads
 search_term = 'fortnite'
 
 if __name__ == '__main__':
-    cookie_string = obtain_cookies_and_threads(search_term)
-
-    # TODO Search the forums for the crimeware
-
-    # TODO Collect the threads meeting our criteria
+    scrape_results = obtain_cookies_and_threads(search_term)
+    cookie = scrape_results[0]
+    thread_ids = scrape_results[1]
 
     # TODO Begin scraping each thread for the information
 
