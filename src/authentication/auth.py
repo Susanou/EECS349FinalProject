@@ -28,6 +28,9 @@ def obtain_cookies_and_threads(keyword):
     browser.get('https://hackforums.net/search.php')
     # searchElem = browser.find_elements_by_name('keywords')
 
+    num_replies_elem = browser.find_element_by_name("numreplies")
+    num_replies_elem.send_keys('30')
+
     search_elems = browser.find_elements_by_name('keywords')
     for search_elem in search_elems:
         try:
@@ -40,43 +43,20 @@ def obtain_cookies_and_threads(keyword):
     time.sleep(2)
     # search_url = browser.current_url    # this will be used for getting more pages
 
-    current_rows = browser.find_elements_by_class_name('inline_row')
+    page_soup = bs4.BeautifulSoup(browser.page_source, 'html.parser')
+    current_rows = page_soup.find_all("tr", {"class" : "inline_row"})
 
     threads = []
     for row in current_rows:
-        # print('loops')
-        print(row)
-        row_soup = bs4.BeautifulSoup(row.text, 'html.parser')
-        # print(__get_reply_count(row_soup))
-        if __get_reply_count(row_soup) >= 30:
-            threads.append(__get_thread_id(row_soup))
-
-    # row_soup = bs4.BeautifulSoupcurrent_rows[0]
+        threads.append(__get_thread_id(row))
 
     return (cookies, threads)
 
 
-def __get_reply_count(row_soup):
-    print(row_soup)
-    row_attrib = row_soup.find_all("td", {"class" : ["trow1 mobile-remove"]})
-    for attrib in row_attrib:
-        # print(attrib)
-        if '<a href="javascript:MyBB.whoPosted(5988772);">' in attrib.__str__(): 
-            reply_soup = bs4.BeautifulSoup(attrib.__str__(), 'html.parser')
-            return int(reply_soup.get_text())
-
-    return -1    # error occurred and the element was not found in the table row (this won't happen (hopefully))
-
 def __get_thread_id(row_soup):
-    row_attrib = row_soup.find_all("td", {"class":"trow1"})
-
-    for attrib in row_attrib:
-        if '<span class="smalltext">' in attrib.__str__():
-            thread_title_soup = bs4.BeautifulSoup(attrib.__str__(), 'html.parser')
-            href = thread_title_soup.find_next('a', href=True)
-            thread_href = href['href'].split('&')[0]    # showthread.php?tid=5988772 , &highlight=....
-            return thread_href.split('=')[1]               # showthread.php?tid= , 5988772
-
+    href = row_soup.find_next('a', href=True)
+    thread_href = href['href'].split('&')[0]       # showthread.php?tid=5988772 , &highlight=....
+    return thread_href.split('=')[1]               # showthread.php?tid= , 5988772
 
 
 def __extract_login_cookies(cookies_list):
