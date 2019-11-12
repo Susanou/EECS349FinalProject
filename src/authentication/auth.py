@@ -8,7 +8,7 @@ import bs4
 
 def obtain_cookies_and_threads(keyword):
     options = Options()
-    # options.headless = True
+    options.headless = True
     browser = webdriver.Firefox(options=options)
     browser.get('https://hackforums.net/member.php?action=login')
 
@@ -40,17 +40,46 @@ def obtain_cookies_and_threads(keyword):
         except ElementNotInteractableException:
             continue
     
-    time.sleep(2)
-    # search_url = browser.current_url    # this will be used for getting more pages
 
+    threads = []
+    threads.append(__extract_threads_on_page(browser))
+    while __next_page(browser):
+        threads.append(__extract_threads_on_page(browser))
+
+
+    # flatten the lists of lists
+    flat_threads = []
+    for sublist in threads:
+        for thread in sublist:
+            flat_threads.append(thread)
+    threads = flat_threads
+
+    return (cookies, threads)
+
+
+def __extract_threads_on_page(browser):
+    time.sleep(3)    # wait for page to load
+
+    # 1st page
     page_soup = bs4.BeautifulSoup(browser.page_source, 'html.parser')
     current_rows = page_soup.find_all("tr", {"class" : "inline_row"})
 
     threads = []
+
     for row in current_rows:
         threads.append(__get_thread_id(row))
+    
+    return threads
 
-    return (cookies, threads)
+
+def __next_page(browser):
+    try:
+        next_button = browser.find_element_by_class_name('pagination_next')
+        next_button.click()
+        return True
+    except:
+        return False    # next button cannot be found or clicked, means on the last page
+
 
 
 def __get_thread_id(row_soup):
