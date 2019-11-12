@@ -5,11 +5,11 @@ from selenium.webdriver.firefox.options import Options
 import time
 
 
-def obtain_required_cookies(login_url):
+def obtain_required_cookies():
     options = Options()
     options.headless = True
     browser = webdriver.Firefox(options=options)
-    browser.get(login_url)
+    browser.get('https://hackforums.net/member.php?action=login')
 
     time.sleep(7)    # wait for the possible identity check to finish
 
@@ -42,5 +42,5 @@ def __extract_login_cookies(cookies_list):
 
 if __name__ == '__main__':
     print('testing')
-    cookies = obtain_required_cookies('https://hackforums.net/member.php?action=login')
+    cookies = obtain_required_cookies()
     print(cookies)
