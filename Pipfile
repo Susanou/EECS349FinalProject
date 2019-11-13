@@ -11,6 +11,8 @@ rope = "*"
 requests = "*"
 bs4 = "*"
 selenium = "*"
+openpyxl = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.7"
