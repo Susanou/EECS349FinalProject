@@ -1,4 +1,4 @@
-from authentication.auth import obtain_cookies_and_threads
+from authentication.auth import obtain_cookies_and_thread_meta
 
 search_term = 'fortnite'
 forum_url = 'https://hackforums.net/showthread.php?tid='
@@ -6,7 +6,7 @@ forum_url = 'https://hackforums.net/showthread.php?tid='
 if __name__ == '__main__':
 
     # this might take some time
-    scrape_results = obtain_cookies_and_threads(search_term)
+    scrape_results = obtain_cookies_and_thread_meta(search_term)
     cookie = scrape_results[0]
     thread_ids = scrape_results[1]
     

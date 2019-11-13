@@ -6,7 +6,7 @@ import time
 import bs4
 
 
-def obtain_cookies_and_threads(keyword):
+def obtain_cookies_and_thread_meta(keyword):
     options = Options()
     options.headless = True
     browser = webdriver.Firefox(options=options)
@@ -39,20 +39,11 @@ def obtain_cookies_and_threads(keyword):
             break    # do not attempt to find the others
         except ElementNotInteractableException:
             continue
-    
 
     threads = []
     threads.append(__extract_threads_on_page(browser))
     while __next_page(browser):
         threads.append(__extract_threads_on_page(browser))
-
-
-    # flatten the lists of lists
-    flat_threads = []
-    for sublist in threads:
-        for thread in sublist:
-            flat_threads.append(thread)
-    threads = flat_threads
 
     return (cookies, threads)
 
@@ -64,12 +55,11 @@ def __extract_threads_on_page(browser):
     page_soup = bs4.BeautifulSoup(browser.page_source, 'html.parser')
     current_rows = page_soup.find_all("tr", {"class" : "inline_row"})
 
-    threads = []
-
+    threads_meta = []
     for row in current_rows:
-        threads.append(__get_thread_id(row))
+        threads_meta.append(__get_thread_meta(row))
     
-    return threads
+    return threads_meta
 
 
 def __next_page(browser):
@@ -81,12 +71,17 @@ def __next_page(browser):
         return False    # next button cannot be found or clicked, means on the last page
 
 
+def __get_thread_meta(row_soup):
+    info = row_soup.find_next('a', href=True)
+    tid = info['href'].split('&')[0].split('=')[1]
+    title = info.get_text()
 
-def __get_thread_id(row_soup):
-    href = row_soup.find_next('a', href=True)
-    thread_href = href['href'].split('&')[0]       # showthread.php?tid=5988772 , &highlight=....
-    return thread_href.split('=')[1]               # showthread.php?tid= , 5988772
+    author = row_soup.find_next('div', {"class" : "author smalltext"}).get_text()
 
+    reply_count = row_soup.find_next('td', {"class" : "trow1 mobile-remove"}).get_text()
+    views = row_soup.find_next('td', {"class" : "trow1 mobile-remove"}).get_text()
+
+    return (tid, author, title, reply_count, views)
 
 def __extract_login_cookies(cookies_list):
     cookie_string = ''
@@ -102,5 +97,5 @@ def __extract_login_cookies(cookies_list):
 
 if __name__ == '__main__':
     print('testing')
-    cookies = obtain_cookies_and_threads('fortnite')
+    cookies = obtain_cookies_and_thread_meta('fortnite')
     print(cookies)
