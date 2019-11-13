@@ -26,10 +26,11 @@ def __write_threads_data_header(sheet):
     sheet['H1'] = 'Category'
     sheet['H2'] = 'Crimeware or CaaS'
     sheet['I1'] = 'Price'
+    sheet['J1'] = 'Unit'
     sheet['K1'] = 'Payment method'
     sheet['K2'] = '1:PayPal 2:CreditCard 3:Cryptocurrency 4: Others'
 
-def write_comments_data_points(sheet, data_tuple, row_num):
+def write_data_points(sheet, data_tuple, row_num):
     true_row = str(row_num + 2)    # allow for the space buffer of the header
     for i, char in enumerate(__char_range('A', chr(ord('A') + len(data_tuple) - 1))):
         sheet[char + true_row] = data_tuple[i]
@@ -45,5 +46,5 @@ if __name__ == '__main__':
     sheet.title = 'Data Analysis'
     __write_comments_data_header(sheet)
     data = ('111111111111', 'myfavoritehackerforum.org', 'cringe', 'ninja', 'bitchmodo', 'fornite', 'cringe')
-    write_comments_data_points(sheet, data, 1)
+    write_data_points(sheet, data, 1)
     wb.save('t1_g14_data.xlsx')
