@@ -30,8 +30,9 @@ def __write_threads_data_header(sheet):
     sheet['K2'] = '1:PayPal 2:CreditCard 3:Cryptocurrency 4: Others'
 
 def write_comments_data_points(sheet, data_tuple, row_num):
+    true_row = str(row_num + 2)    # allow for the space buffer of the header
     for i, char in enumerate(__char_range('A', chr(ord('A') + len(data_tuple) - 1))):
-        sheet[char + row_num] = data_tuple[i]
+        sheet[char + true_row] = data_tuple[i]
 
 
 def __char_range(c1, c2):
@@ -42,4 +43,7 @@ if __name__ == '__main__':
     wb = openpyxl.Workbook()
     sheet = wb.active
     sheet.title = 'Data Analysis'
+    __write_comments_data_header(sheet)
+    data = ('111111111111', 'myfavoritehackerforum.org', 'cringe', 'ninja', 'bitchmodo', 'fornite', 'cringe')
+    write_comments_data_points(sheet, data, 1)
     wb.save('t1_g14_data.xlsx')
