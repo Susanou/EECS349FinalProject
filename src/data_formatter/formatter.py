@@ -2,8 +2,8 @@ import openpyxl
 
 def __write_comments_data_header(sheet):
     sheet['A1'] = 'Thread_id'
-    sheet['A2'] = 'Specific page of the comment'
     sheet['B1'] = 'Comment_link'
+    sheet['B2'] = 'Specific page of the comment'
     sheet['C1'] = 'Floor_number'
     sheet['D1'] = 'User name'
     sheet['E1'] = 'Trade'
