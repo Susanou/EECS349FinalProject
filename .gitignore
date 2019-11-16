@@ -2,5 +2,4 @@ geckodriver.log
 .vscode/
 *.xlsx*
 test.py
-/src/sentiment/data/
 *.pyc
