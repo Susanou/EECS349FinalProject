@@ -1,34 +1,50 @@
 from bs4 import BeautifulSoup
 import re
 import requests
+import time
 
-BASE_URL = 'www.hackforums.net/showthread.php?tid='
+BASE_URL = 'https://hackforums.net/showthread.php?tid='
 PAGE_PARAM = '&page='
 
 
 def request_thread_comments(cookie, thread_id):
-    headers = {"Cookie" : cookie}
-    thread_url = BASE_URL + thread_id
-    response = requests.get(thread_url, headers=headers)
 
-    if response.status_code != 200:
-        raise Exception('Invalid response status')
-    else:
-        comments_pages = []
-        page_soup = BeautifulSoup(response.text, 'html.parser')
-        comments_pages.append(page_soup)
+    with requests.Session() as session:
+        # DO NOT MODIFY HEADERS
+        headers = {
+            "Cookie" : cookie, 
+            "User-Agent" : "PostmanRuntime/7.19.0",
+            "Accept" : "*/*",
+            "Cache-Control" : "no-cache",
+            "Postman-Token" : "76a8bb46-a397-44ef-8033-3a62127ab6f1",
+            "Host" : "hackforums.net",
+            "Accept-Encoding" : "gzip, deflate",
+            "Connection" : "keep-alive"
+        }
+        session.headers = headers
+        thread_url = BASE_URL + thread_id
 
-        next_page_count = 2
-        while page_soup.find('a', {"class" : "pagination_next"}) is not None:
-            next_page = thread_url + PAGE_PARAM + str(next_page_count)
-            
-            response = requests.get(next_page, headers=headers)
-            if response.status_code == 200:
-                page_soup = BeautifulSoup(response.text, 'html.parser')
-                comments_pages.append(page_soup)
-            next_page_count += 1
+        response = session.get(thread_url)
 
-        return comments_pages
+        if response.status_code != 200:
+            raise Exception('Invalid response status')
+        else:
+            comments_pages = []
+            page_soup = BeautifulSoup(response.text, 'html.parser')
+            comments_pages.append(page_soup)
+
+            next_page_count = 2
+            while page_soup.find('a', {"class" : "pagination_next"}) is not None:
+                next_page = thread_url + PAGE_PARAM + str(next_page_count)
+                
+                response = session.get(next_page)
+                if response.status_code == 200:
+                    page_soup = BeautifulSoup(response.text, 'html.parser')
+                    comments_pages.append(page_soup)
+                next_page_count += 1
+                time.sleep(1)    # Need to avoid detection
+
+            return comments_pages
 
 
 def generate_comments_from_html_text(soup):
@@ -39,10 +55,10 @@ def generate_comments_from_html_text(soup):
     comments_text = []
     comments = soup.find_all('div', {"class" : "post_body scaleimages"})
     for comment in comments:
-        comments_text.append(comment.get_text())
+        comments_text.append(comment.text)
     post_numbers = []
-    floor_numbers = soup.find_all('a', {"class" : re.compile('post_url_*')})
+    floor_numbers = soup.find_all('a', {"id" : re.compile(r"post_url_*")})
     for number in floor_numbers:
         post_numbers.append(number.get_text())
 
-    return(names, comments, post_numbers)
+    return (names, comments, post_numbers)
