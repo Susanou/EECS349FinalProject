@@ -1,7 +1,13 @@
 from authentication.auth import obtain_cookies_and_thread_meta
+from sentiment.fitting import vote, predictedSVC, predictNaiveBayes, predictSGD, get_sentiment
 
 search_term = 'fortnite'
 forum_url = 'https://hackforums.net/showthread.php?tid='
+sentiment = get_sentiment()
+clf1 = predictedSVC()
+clf2 = predictNaiveBayes()
+clf3 = predictSGD()
+
 
 def __aggregate_thread_ids(meta_info_list):
     new_list = []
@@ -29,5 +35,13 @@ if __name__ == '__main__':
 
 
     # TODO Analyze the comments for sentiment
+
+    comment = ""
+
+    pred1 = clf1.predict_proba(comment)
+    pred2 = clf2.predict_proba(comment)
+    pred3 = clf3.predict_proba(comment)
+
+    result, totalP = vote(pred1, pred2, pred3)
 
     # TODO Write the data to an Excel file
