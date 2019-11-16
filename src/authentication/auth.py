@@ -6,10 +6,7 @@ import time
 import bs4
 
 
-def obtain_cookies_and_thread_meta(keyword):
-    options = Options()
-    options.headless = True
-    browser = webdriver.Firefox(options=options)
+def obtain_cookies_and_thread_meta(browser, keyword):
     browser.get('https://hackforums.net/member.php?action=login')
 
     time.sleep(7)    # wait for the possible identity check to finish
@@ -45,6 +42,7 @@ def obtain_cookies_and_thread_meta(keyword):
     while __next_page(browser):
         threads.append(__extract_threads_on_page(browser))
 
+    threads = [item for sublist in threads for item in sublist]
     return (cookies, threads)
 
 
@@ -97,5 +95,5 @@ def __extract_login_cookies(cookies_list):
 
 if __name__ == '__main__':
     print('testing')
-    cookies = obtain_cookies_and_thread_meta('fortnite')
-    print(cookies)
+    # cookies = obtain_cookies_and_thread_meta('fortnite')
+    # print(cookies)
