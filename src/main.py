@@ -16,6 +16,15 @@ def __aggregate_thread_ids(meta_info_list):
     
     return new_list
 
+def analyzeComment(comment: list):
+    pred1 = clf1.predict_proba(comment)
+    pred2 = clf2.predict_proba(comment)
+    pred3 = clf3.predict_proba(comment)
+
+    result, totalP = vote(pred1, pred2, pred3)
+
+    return result, totalP
+
 
 if __name__ == '__main__':
 

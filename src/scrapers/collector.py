@@ -1,3 +1,5 @@
+from bs4 import BeautifulSoup
+
 def generate_comments_from_html_text(text):
     bs = BeautifulSoup(text, 'html.parser')
 
