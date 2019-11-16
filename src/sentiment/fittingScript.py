@@ -34,10 +34,7 @@ from sklearn.datasets import load_files
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 
-dataset = load_files("sentiment/data")
-docs_train, docs_test, y_train, y_test = train_test_split(
-    dataset.data, dataset.target, test_size=.99, random_state=42, shuffle=True)
-vectorizer = TfidfVectorizer(ngram_range=(1,1), analyzer='word', use_idf=True)
+dataset = load_files("../sentiment/txt_sentoken")
 
 def get_page(url: str):
     """Fonction pour recuperer le texte nettoyer d'une page html
@@ -60,7 +57,7 @@ def get_page(url: str):
     return text
 
 def predictSGD(): 
-    if not os.path.isfile("sentiment/sgd_model.plk"):
+    if not os.path.isfile("sgd_mode.plk"):
         start = time.time()
 
         clf = Pipeline([
@@ -99,13 +96,13 @@ def predictSGD():
         joblib.dump(gs_clf, "sgd_model.plk")
         return gs_clf
     else:
-        return joblib.load("sentiment/sgd_model.plk")
+        return joblib.load("sgd_model.plk")
 
 
 #If using SVC, not able to get the the different proba of each case
 def predictedSVC():
 
-    if not os.path.isfile("sentiment/svc_model.plk"):
+    if not os.path.isfile("svc_model.plk"):
 
         start = time.time()
 
@@ -145,11 +142,10 @@ def predictedSVC():
         joblib.dump(gs_clf, "svc_model.plk")
         return gs_clf
     else:
-        return joblib.load("sentiment/svc_model.plk")
+        return joblib.load("svc_model.plk")
 
 def predictNaiveBayes():
-
-    if not os.path.isfile("sentiment/naive_model.plk"):
+    if not os.path.isfile("naive_model.pkl"):
 
         start = time.time()
 
@@ -189,7 +185,7 @@ def predictNaiveBayes():
 
         return gs_clf
     else:
-        return joblib.load("sentiment/naive_model.plk")
+        return joblib.load("naive_model.plk")
 
 def get_sentiment():
     return dataset.target_names
@@ -213,28 +209,18 @@ def vote(prob1, prob2, prob3):
     float
         La  probabilite associee au resultat
     """
-
-    top1 = np.argsort(prob1, axis=1)[:,-2:]
-    top2 = np.argsort(prob2, axis=1)[:,-2:]
-    top3 = np.argsort(prob3, axis=1)[:,-2:]
-
-    top1 = top1[0]
-    top2 = top2[0]
-    top3 = top3[0]
-
-    sums = dict()
         
-    for i in top1:
+    for i in prob1:
         if i in sums:
             sums[i] += prob1[0][i]
         else:
             sums[i] = prob1[0][i]
-    for j in top2:
+    for j in prob2:
         if j in sums:
             sums[j] += prob2[0][j]
         else:
             sums[j] = prob2[0][j]
-    for k in top3:
+    for k in prob3:
         if k in sums:
             sums[k] += prob3[0][k]
         else:
@@ -244,3 +230,48 @@ def vote(prob1, prob2, prob3):
     maxK = [k for k, v in sums.items() if v == maxV]
 
     return (maxK[0], maxV)
+
+
+
+if __name__ == "__main__":
+    global languages_data_folder
+    global docs_train, docs_test, y_train, y_test
+    global vectorizer
+
+    parser = argparse.ArgumentParser(description="Script for fitting according to 3 different algorithms:\n SVC, Naive Bayes OR SGD")
+
+    parser.add_argument("-n", "--naive", action="store_true", help='Use the Naive Bayes algorithm')
+    parser.add_argument("-g", '--sgd', action='store_true', help="Use the SVG algorithm")
+    parser.add_argument("-c", '--svc', action="store_true", help="Use the SVC algorithm")
+    parser.add_argument("-a", "--all", action="store_true", help="Compiles all the files for the different algorithms")
+    parser.add_argument("dataPath",default="txt_sentoken",nargs='?', type=str, help="Path to the folder where all the text data is stored")
+
+    args = parser.parse_args()
+
+    languages_data_folder = args.dataPath
+    dataset = load_files(languages_data_folder)
+    docs_train, docs_test, y_train, y_test = train_test_split(
+        dataset.data, dataset.target, test_size=.99, random_state=42, shuffle=True)
+    vectorizer = TfidfVectorizer(ngram_range=(1,1), analyzer='word', use_idf=True)
+
+    if args.naive:
+        print("Using naive bayes to fit")
+        predictNaiveBayes()
+    elif args.sgd:
+        print("using sgd to fit")
+        predictSGD()
+    elif args.svc:
+        print("Using SVC to fit")
+        predictedSVC()
+    elif args.all:
+        print("Compiling all algorithms")
+        print("Using SVC to fit")
+        predictedSVC()
+        print("using SGD to fit")
+        predictSGD()
+        print("Using naive bayes to fit")
+        predictNaiveBayes()
+    else:
+        parser.print_help()
+
+    

@@ -36,12 +36,14 @@ if __name__ == '__main__':
 
     # TODO Analyze the comments for sentiment
 
-    comment = ""
+    comment = ["Best ever"] #need to pass the comments in a list for it to classify them so far can do one comment at a time. Trying to correct for more
 
     pred1 = clf1.predict_proba(comment)
     pred2 = clf2.predict_proba(comment)
     pred3 = clf3.predict_proba(comment)
 
     result, totalP = vote(pred1, pred2, pred3)
+
+    print("I think you are talking about {0} with a score of {1}".format(sentiment[result], totalP))
 
     # TODO Write the data to an Excel file
