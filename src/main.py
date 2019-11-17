@@ -1,5 +1,4 @@
 from authentication.auth import obtain_cookies_and_thread_meta
-# import data_formatter.formatter
 from data_formatter.formatter import create_workbook, write_data_points
 from scrapers.collector import request_thread_comments, generate_comments_from_html_text
 from selenium import webdriver
@@ -51,7 +50,7 @@ if __name__ == '__main__':
         all_threads = []
         all_comments = []
 
-        for i, thread in enumerate(thread_ids):
+        for i, thread in enumerate(thread_ids, 1):
             thread_url = forum_url + thread
             cur_thread = thread_meta[i]
             meta_thread_tuple = (i, thread_url, 'Hack Forums', cur_thread[1], cur_thread[2], cur_thread[3], cur_thread[4], 'MANUAL-ID-REQ', 'MANUAL-ID-REQ', 'MANUAL-ID-REQ') 
@@ -67,16 +66,11 @@ if __name__ == '__main__':
                 for j in range(len(nums)):
                     all_comments.append((i, nums[j], authors[j], bodies[j]))
                 
-                print('Comment page finished for {0}', str(i))
-            # break
+                print('Comment page finished for ' + str(i))
     finally:
         browser.close()
 
-    # TODO Analyze the comments for sentiment
-
-    # comment = ["Best ever"] #need to pass the comments in a list for it to classify them so far can do one comment at a time. Trying to correct for more
-
-    print('Commencing analysis of the comments', end='\n\n')
+    print('Analyzing the comments', end='\n\n')
     analyzed_comments = []
     for comment in all_comments:
         comment_text = [comment[3]]
@@ -85,7 +79,7 @@ if __name__ == '__main__':
         pred3 = clf3.predict_proba(comment_text)
         result, totalP = vote(pred1, pred2, pred3)
 
-        analyzed_comments.append((comment[0], comment[1], comment[2], '0', result, '0', comment[3]))
+        analyzed_comments.append((comment[0], comment[1], comment[2], '0', '0', result, comment[3]))
 
     print('Writing to Excel document', end='\n\n')
     title = 'Project T1_Template.xlsx'
@@ -94,8 +88,10 @@ if __name__ == '__main__':
     for q, thread in enumerate(all_threads, 1):
         write_data_points(sheet, thread, q)
     wb.save(title)
+    print('Saving after count of all threads.')
 
     sheet = wb['Comments']
     for q, comment in enumerate(analyzed_comments, 1):
         write_data_points(sheet, comment, q)
     wb.save(title)
+    print('Saving after all comments.')
