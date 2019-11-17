@@ -1,5 +1,19 @@
 import openpyxl
 
+def create_workbook(title):
+    wb = openpyxl.Workbook()
+    wb.save(title)
+    sheet = wb.active
+    sheet.title = 'Threads'
+    wb.create_sheet('Comments')
+    __write_threads_data_header(sheet)
+    sheet = wb.get_sheet_by_name('Comments')
+    __write_comments_data_header(sheet)
+    wb.save('Project T1_Template.xlsx')
+
+    return wb
+
+
 def __write_comments_data_header(sheet):
     sheet['A1'] = 'Thread_id'
     sheet['B1'] = 'Comment_link'

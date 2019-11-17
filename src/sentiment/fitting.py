@@ -34,7 +34,7 @@ from sklearn.datasets import load_files
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 
-dataset = load_files("sentiment/data")
+dataset = load_files("src/sentiment/data")
 docs_train, docs_test, y_train, y_test = train_test_split(
     dataset.data, dataset.target, test_size=.99, random_state=42, shuffle=True)
 vectorizer = TfidfVectorizer(ngram_range=(1,1), analyzer='word', use_idf=True)
