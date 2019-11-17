@@ -50,7 +50,7 @@ if __name__ == '__main__':
         all_threads = []
         all_comments = []
 
-        for i, thread in enumerate(thread_ids, 1):
+        for i, thread in enumerate(thread_ids):
             thread_url = forum_url + thread
             cur_thread = thread_meta[i]
             meta_thread_tuple = (i, thread_url, 'Hack Forums', cur_thread[1], cur_thread[2], cur_thread[3], cur_thread[4], 'MANUAL-ID-REQ', 'MANUAL-ID-REQ', 'MANUAL-ID-REQ') 
@@ -66,7 +66,7 @@ if __name__ == '__main__':
                 for j in range(len(nums)):
                     all_comments.append((i, nums[j], authors[j], bodies[j]))
                 
-                print('Comment page finished for ' + str(i))
+                print('Comment page finished for ' + str(i + 1))
     finally:
         browser.close()
 
