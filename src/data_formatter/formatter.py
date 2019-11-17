@@ -7,7 +7,7 @@ def create_workbook(title):
     sheet.title = 'Threads'
     wb.create_sheet('Comments')
     __write_threads_data_header(sheet)
-    sheet = wb.get_sheet_by_name('Comments')
+    sheet = wb['Comments']
     __write_comments_data_header(sheet)
     wb.save('Project T1_Template.xlsx')
 

@@ -66,7 +66,9 @@ if __name__ == '__main__':
 
                 for j in range(len(nums)):
                     all_comments.append((i, nums[j], authors[j], bodies[j]))
-            break
+                
+                print('Comment page finished for {0}', str(i))
+            # break
     finally:
         browser.close()
 
@@ -74,6 +76,7 @@ if __name__ == '__main__':
 
     # comment = ["Best ever"] #need to pass the comments in a list for it to classify them so far can do one comment at a time. Trying to correct for more
 
+    print('Commencing analysis of the comments', end='\n\n')
     analyzed_comments = []
     for comment in all_comments:
         comment_text = [comment[3]]
@@ -82,41 +85,17 @@ if __name__ == '__main__':
         pred3 = clf3.predict_proba(comment_text)
         result, totalP = vote(pred1, pred2, pred3)
 
-        
+        analyzed_comments.append((comment[0], comment[1], comment[2], '0', result, '0', comment[3]))
 
-        analyzed_comments.append((comment[0], comment[1], comment[2], pred1, pred2, pred3, comment[3]))
-
-    print(analyzed_comments)
-
-    # print("I think you are talking about {0} with a score of {1}".format(sentiment[result], totalP))
-
-    # TODO Write the data to an Excel file
-
-    print('Writing to Excel document')
+    print('Writing to Excel document', end='\n\n')
     title = 'Project T1_Template.xlsx'
     wb = create_workbook(title)
-    sheet = wb.get_sheet_by_name('Threads')
-    for q, thread in enumerate(all_threads):
+    sheet = wb['Threads']
+    for q, thread in enumerate(all_threads, 1):
         write_data_points(sheet, thread, q)
-        wb.save(title)
+    wb.save(title)
 
-    sheet = wb.get_sheet_by_name('Comments')
-    for q, comment in enumerate(analyzed_comments):
+    sheet = wb['Comments']
+    for q, comment in enumerate(analyzed_comments, 1):
         write_data_points(sheet, comment, q)
-        wb.save(title)
-
-    wb.close()
-
-
-
-    # wb = openpyxl.Workbook()
-    # sheet = wb.active
-    # sheet.title = 'Threads'
-    # __write_threads_data_header(sheet)
-    
-
-
-    # __write_comments_data_header(sheet)
-
-    # write_data_points(sheet, data, 1)
-    # wb.save('t1_g14_data.xlsx')
+    wb.save(title)

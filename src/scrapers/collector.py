@@ -42,7 +42,7 @@ def request_thread_comments(cookie, thread_id):
                     page_soup = BeautifulSoup(response.text, 'html.parser')
                     comments_pages.append(page_soup)
                 next_page_count += 1
-                time.sleep(0.25)    # Need to avoid detection
+                # time.sleep(0.06225)    # Need to avoid detection
 
             return comments_pages
 
