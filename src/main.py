@@ -76,12 +76,15 @@ if __name__ == '__main__':
 
     analyzed_comments = []
     for comment in all_comments:
-        pred1 = clf1.predict_proba(comment)
-        pred2 = clf2.predict_proba(comment)
-        pred3 = clf3.predict_proba(comment)
+        comment_text = [comment[3]]
+        pred1 = clf1.predict_proba(comment_text)
+        pred2 = clf2.predict_proba(comment_text)
+        pred3 = clf3.predict_proba(comment_text)
         result, totalP = vote(pred1, pred2, pred3)
 
-        analyzed_comments.append((comment[0]), comment[1], comment[2], pred1, pred2, pred3, comment[3])
+        
+
+        analyzed_comments.append((comment[0], comment[1], comment[2], pred1, pred2, pred3, comment[3]))
 
     print(analyzed_comments)
 
