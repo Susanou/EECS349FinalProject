@@ -42,7 +42,7 @@ def request_thread_comments(cookie, thread_id):
                     page_soup = BeautifulSoup(response.text, 'html.parser')
                     comments_pages.append(page_soup)
                 next_page_count += 1
-                time.sleep(1)    # Need to avoid detection
+                time.sleep(0.25)    # Need to avoid detection
 
             return comments_pages
 
@@ -55,10 +55,15 @@ def generate_comments_from_html_text(soup):
     comments_text = []
     comments = soup.find_all('div', {"class" : "post_body scaleimages"})
     for comment in comments:
-        comments_text.append(comment.text)
+        if comment.blockquote is None:
+            comments_text.append(comment.get_text().replace('\n', '').replace('\t', '').replace('\r', ''))
+        else:
+            text_parts = comment.find_all(text=True, recursive=False)
+            comments_text.append(str(text_parts[-1]).replace('\n', '').replace('\t', '').replace('\r', ''))
+
     post_numbers = []
     floor_numbers = soup.find_all('a', {"id" : re.compile(r"post_url_*")})
     for number in floor_numbers:
         post_numbers.append(number.get_text())
 
-    return (names, comments, post_numbers)
+    return (names, comments_text, post_numbers)
