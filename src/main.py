@@ -79,7 +79,7 @@ if __name__ == '__main__':
         pred3 = clf3.predict_proba(comment_text)
         result, totalP = vote(pred1, pred2, pred3)
 
-        analyzed_comments.append((comment[0], comment[1], comment[2], '0', '0', result, comment[3]))
+        analyzed_comments.append((comment[0], comment[1], comment[2], '0', '0', sentiment[result], comment[3]))
 
     print('Writing to Excel document', end='\n\n')
     title = 'Project T1_Template.xlsx'
