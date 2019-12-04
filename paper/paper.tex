@@ -118,6 +118,7 @@
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
+  [REWRITE THIS AT END]
   The growth of online video games has yielded a vast underground economy of
   criminals who sell exploits and credentials to give gamers unfair advantages
   in the games. This paper studies the sale of ``crimeware'' connected to
@@ -163,7 +164,7 @@
 %%
 %% Keywords. The author(s) should pick words that accurately describe
 %% the work being presented. Separate the keywords with commas.
-\keywords{web scraping, sentiment analysis, cybercrime}
+\keywords{web scraping, sentiment analysis, cybercrime, video games}
 
 %%
 %% This command processes the author and affiliation and title
@@ -172,12 +173,11 @@
 
 \section{Introduction}
 
-[INTRODUCE ONLINE VIDEO GAMES; TALK ABOUT SUCCESS AND VAST REACH]
+[INTRODUCE ONLINE VIDEO GAMES; TALK ABOUT SUCCESS AND LARGE APPEAL]
 
-[INTRODUCE HACKER FORUMS, SPECIFICALLY HACK FORUMS]
+[INTRODUCE CONCEPT OF HACKER FORUMS]
 
 \section{Background}
-
 
 \subsection{Fortnite: Battle Royale}
 [DISCUSS THE GAME IN LIGHT DETAIL; GENRE, PLAYER COUNT, DEMOGRAPHICS]
@@ -195,9 +195,9 @@
 
 [DISCUSS IMPLEMENTATION OF OUR WEB SCRAPER]
 
-[DISCUSS OUR TECHNIQUE OF DATA ANALYSIS]
+[DISCUSS OUR TECHNIQUE OF DATA ANALYSIS - i.e, sentiment analyze all, then manually confirm other details]
 
-\section{Evaluation}
+\section{Results}
 
 % The title of your work should use capital letters appropriately -
 % \url{https://capitalizemytitle.com/} has useful rules for
@@ -213,237 +213,126 @@
 % \end{verbatim}
 
 % Above was too helpful to uncomment
+[RAW RESULTS DATA, THEN REFINED DATA]
 
-\section{Authors and Affiliations}
+\subsection{Key Players}
+[A table would be a nice addition here]
+[DISCUSS THE DIFFERENT KEY MEMBERS OF THE COMMUNITY]
+[WHICH CHEATS ARE MOST POPULAR]
 
-Each author must be defined separately for accurate metadata
-identification. Multiple authors may share one affiliation. Authors'
-names should not be abbreviated; use full first names wherever
-possible. Include authors' e-mail addresses whenever possible.
+\section{Solutions}
+\subsection{Video Game Cheats}
+[MIN 1 PARA PER OUR SOLUTIONS, EXPLAINING WHY ADDRESSES]
 
-Grouping authors' names or e-mail addresses, or providing an ``e-mail
-alias,'' as shown below, is not acceptable:
-\begin{verbatim}
-  \author{Brooke Aster, David Mehldau}
-  \email{dave,judy,steve@university.edu}
-  \email{firstname.lastname@phillips.org}
-\end{verbatim}
+\subsection{Account Theft}
+[MFA (already in Fortnite) but suggest mandating it]
+[FIND STATS OF HOW IT REDUCES BREACHES]
 
-The \verb|authornote| and \verb|authornotemark| commands allow a note
-to apply to multiple authors --- for example, if the first two authors
-of an article contributed equally to the work.
+\section{Conclusion}
+[CONCLUDE]
+[ALSO DISCUSS WHAT WE LEARNED (I think she wants that...)]
 
-If your author list is lengthy, you must define a shortened version of
-the list of authors to be used in the page headers, to prevent
-overlapping text. The following command should be placed just after
-the last \verb|\author{}| definition:
-\begin{verbatim}
-  \renewcommand{\shortauthors}{McCartney, et al.}
-\end{verbatim}
-Omitting this command will force the use of a concatenated list of all
-of the authors' names, which may result in overlapping text in the
-page headers.
 
-The article template's documentation, available at
-\url{https://www.acm.org/publications/proceedings-template}, has a
-complete explanation of these commands and tips for their effective
-use.
+% Information on how to make tables
 
-\section{Rights Information}
+% \section{Tables}
 
-Authors of any work published by ACM will need to complete a rights
-form. Depending on the kind of work, and the rights management choice
-made by the author, this may be copyright transfer, permission,
-license, or an OA (open access) agreement.
+% The ``\verb|acmart|'' document class includes the ``\verb|booktabs|''
+% package --- \url{https://ctan.org/pkg/booktabs} --- for preparing
+% high-quality tables.
 
-Regardless of the rights management choice, the author will receive a
-copy of the completed rights form once it has been submitted. This
-form contains \LaTeX\ commands that must be copied into the source
-document. When the document source is compiled, these commands and
-their parameters add formatted text to several areas of the final
-document:
-\begin{itemize}
-\item the ``ACM Reference Format'' text on the first page.
-\item the ``rights management'' text on the first page.
-\item the conference information in the page header(s).
-\end{itemize}
+% Table captions are placed {\itshape above} the table.
 
-Rights information is unique to the work; if you are preparing several
-works for an event, make sure to use the correct set of commands with
-each of the works.
+% Because tables cannot be split across pages, the best placement for
+% them is typically the top of the page nearest their initial cite.  To
+% ensure this proper ``floating'' placement of tables, use the
+% environment \textbf{table} to enclose the table's contents and the
+% table caption.  The contents of the table itself must go in the
+% \textbf{tabular} environment, to be aligned properly in rows and
+% columns, with the desired horizontal and vertical rules.  Again,
+% detailed instructions on \textbf{tabular} material are found in the
+% \textit{\LaTeX\ User's Guide}.
 
-\section{CCS Concepts and User-Defined Keywords}
+% Immediately following this sentence is the point at which
+% Table~\ref{tab:freq} is included in the input file; compare the
+% placement of the table here with the table in the printed output of
+% this document.
 
-Two elements of the ``acmart'' document class provide powerful
-taxonomic tools for you to help readers find your work in an online
-search.
+% \begin{table}
+%   \caption{Frequency of Special Characters}
+%   \label{tab:freq}
+%   \begin{tabular}{ccl}
+%     \toprule
+%     Non-English or Math&Frequency&Comments\\
+%     \midrule
+%     \O & 1 in 1,000& For Swedish names\\
+%     $\pi$ & 1 in 5& Common in math\\
+%     \$ & 4 in 5 & Used in business\\
+%     $\Psi^2_1$ & 1 in 40,000& Unexplained usage\\
+%   \bottomrule
+% \end{tabular}
+% \end{table}
 
-The ACM Computing Classification System ---
-\url{https://www.acm.org/publications/class-2012} --- is a set of
-classifiers and concepts that describe the computing
-discipline. Authors can select entries from this classification
-system, via \url{https://dl.acm.org/ccs/ccs.cfm}, and generate the
-commands to be included in the \LaTeX\ source.
+% To set a wider table, which takes up the whole width of the page's
+% live area, use the environment \textbf{table*} to enclose the table's
+% contents and the table caption.  As with a single-column table, this
+% wide table will ``float'' to a location deemed more
+% desirable. Immediately following this sentence is the point at which
+% Table~\ref{tab:commands} is included in the input file; again, it is
+% instructive to compare the placement of the table here with the table
+% in the printed output of this document.
 
-User-defined keywords are a comma-separated list of words and phrases
-of the authors' choosing, providing a more flexible way of describing
-the research being presented.
+% \begin{table*}
+%   \caption{Some Typical Commands}
+%   \label{tab:commands}
+%   \begin{tabular}{ccl}
+%     \toprule
+%     Command &A Number & Comments\\
+%     \midrule
+%     \texttt{{\char'134}author} & 100& Author \\
+%     \texttt{{\char'134}table}& 300 & For tables\\
+%     \texttt{{\char'134}table*}& 400& For wider tables\\
+%     \bottomrule
+%   \end{tabular}
+% \end{table*}
 
-CCS concepts and user-defined keywords are required for all short- and
-full-length articles, and optional for two-page abstracts.
+% In case we want to add figures to our paper
+% \section{Figures}
 
-\section{Sectioning Commands}
+% The ``\verb|figure|'' environment should be used for figures. One or
+% more images can be placed within a figure. If your figure contains
+% third-party material, you must clearly identify it as such, as shown
+% in the example below.
+% % \begin{figure}[h]
+% %   \centering
+% %   \includegraphics[width=\linewidth]{sample-franklin}
+% %   \caption{1907 Franklin Model D roadster. Photograph by Harris \&
+% %     Ewing, Inc. [Public domain], via Wikimedia
+% %     Commons. (\url{https://goo.gl/VLCRBB}).}
+% %   \Description{The 1907 Franklin Model D roadster.}
+% % \end{figure}
 
-Your work should use standard \LaTeX\ sectioning commands:
-\verb|section|, \verb|subsection|, \verb|subsubsection|, and
-\verb|paragraph|. They should be numbered; do not remove the numbering
-from the commands.
+% Your figures should contain a caption which describes the figure to
+% the reader. Figure captions go below the figure. Your figures should
+% {\bfseries also} include a description suitable for screen readers, to
+% assist the visually-challenged to better understand your work.
 
-Simulating a sectioning command by setting the first word or words of
-a paragraph in boldface or italicized text is {\bfseries not allowed.}
+% Figure captions are placed {\itshape below} the figure.
 
-\section{Tables}
+% \subsection{The ``Teaser Figure''}
 
-The ``\verb|acmart|'' document class includes the ``\verb|booktabs|''
-package --- \url{https://ctan.org/pkg/booktabs} --- for preparing
-high-quality tables.
-
-Table captions are placed {\itshape above} the table.
-
-Because tables cannot be split across pages, the best placement for
-them is typically the top of the page nearest their initial cite.  To
-ensure this proper ``floating'' placement of tables, use the
-environment \textbf{table} to enclose the table's contents and the
-table caption.  The contents of the table itself must go in the
-\textbf{tabular} environment, to be aligned properly in rows and
-columns, with the desired horizontal and vertical rules.  Again,
-detailed instructions on \textbf{tabular} material are found in the
-\textit{\LaTeX\ User's Guide}.
-
-Immediately following this sentence is the point at which
-Table~\ref{tab:freq} is included in the input file; compare the
-placement of the table here with the table in the printed output of
-this document.
-
-\begin{table}
-  \caption{Frequency of Special Characters}
-  \label{tab:freq}
-  \begin{tabular}{ccl}
-    \toprule
-    Non-English or Math&Frequency&Comments\\
-    \midrule
-    \O & 1 in 1,000& For Swedish names\\
-    $\pi$ & 1 in 5& Common in math\\
-    \$ & 4 in 5 & Used in business\\
-    $\Psi^2_1$ & 1 in 40,000& Unexplained usage\\
-  \bottomrule
-\end{tabular}
-\end{table}
-
-To set a wider table, which takes up the whole width of the page's
-live area, use the environment \textbf{table*} to enclose the table's
-contents and the table caption.  As with a single-column table, this
-wide table will ``float'' to a location deemed more
-desirable. Immediately following this sentence is the point at which
-Table~\ref{tab:commands} is included in the input file; again, it is
-instructive to compare the placement of the table here with the table
-in the printed output of this document.
-
-\begin{table*}
-  \caption{Some Typical Commands}
-  \label{tab:commands}
-  \begin{tabular}{ccl}
-    \toprule
-    Command &A Number & Comments\\
-    \midrule
-    \texttt{{\char'134}author} & 100& Author \\
-    \texttt{{\char'134}table}& 300 & For tables\\
-    \texttt{{\char'134}table*}& 400& For wider tables\\
-    \bottomrule
-  \end{tabular}
-\end{table*}
-
-\section{Math Equations}
-You may want to display math equations in three distinct styles:
-inline, numbered or non-numbered display.  Each of the three are
-discussed in the next sections.
-
-\subsection{Inline (In-text) Equations}
-A formula that appears in the running text is called an inline or
-in-text formula.  It is produced by the \textbf{math} environment,
-which can be invoked with the usual
-\texttt{{\char'134}begin\,\ldots{\char'134}end} construction or with
-the short form \texttt{\$\,\ldots\$}. You can use any of the symbols
-and structures, from $\alpha$ to $\omega$, available in
-\LaTeX~\cite{Lamport:LaTeX}; this section will simply show a few
-examples of in-text equations in context. Notice how this equation:
-\begin{math}
-  \lim_{n\rightarrow \infty}x=0
-\end{math},
-set here in in-line math style, looks slightly different when
-set in display style.  (See next section).
-
-\subsection{Display Equations}
-A numbered display equation---one set off by vertical space from the
-text and centered horizontally---is produced by the \textbf{equation}
-environment. An unnumbered display equation is produced by the
-\textbf{displaymath} environment.
-
-Again, in either environment, you can use any of the symbols and
-structures available in \LaTeX\@; this section will just give a couple
-of examples of display equations in context.  First, consider the
-equation, shown as an inline equation above:
-\begin{equation}
-  \lim_{n\rightarrow \infty}x=0
-\end{equation}
-Notice how it is formatted somewhat differently in
-the \textbf{displaymath}
-environment.  Now, we'll enter an unnumbered equation:
-\begin{displaymath}
-  \sum_{i=0}^{\infty} x + 1
-\end{displaymath}
-and follow it with another numbered equation:
-\begin{equation}
-  \sum_{i=0}^{\infty}x_i=\int_{0}^{\pi+2} f
-\end{equation}
-just to demonstrate \LaTeX's able handling of numbering.
-
-\section{Figures}
-
-The ``\verb|figure|'' environment should be used for figures. One or
-more images can be placed within a figure. If your figure contains
-third-party material, you must clearly identify it as such, as shown
-in the example below.
-% \begin{figure}[h]
-%   \centering
-%   \includegraphics[width=\linewidth]{sample-franklin}
-%   \caption{1907 Franklin Model D roadster. Photograph by Harris \&
-%     Ewing, Inc. [Public domain], via Wikimedia
-%     Commons. (\url{https://goo.gl/VLCRBB}).}
-%   \Description{The 1907 Franklin Model D roadster.}
-% \end{figure}
-
-Your figures should contain a caption which describes the figure to
-the reader. Figure captions go below the figure. Your figures should
-{\bfseries also} include a description suitable for screen readers, to
-assist the visually-challenged to better understand your work.
-
-Figure captions are placed {\itshape below} the figure.
-
-\subsection{The ``Teaser Figure''}
-
-A ``teaser figure'' is an image, or set of images in one figure, that
-are placed after all author and affiliation information, and before
-the body of the article, spanning the page. If you wish to have such a
-figure in your article, place the command immediately before the
-\verb|\maketitle| command:
-\begin{verbatim}
-  \begin{teaserfigure}
-    \includegraphics[width=\textwidth]{sampleteaser}
-    \caption{figure caption}
-    \Description{figure description}
-  \end{teaserfigure}
-\end{verbatim}
+% A ``teaser figure'' is an image, or set of images in one figure, that
+% are placed after all author and affiliation information, and before
+% the body of the article, spanning the page. If you wish to have such a
+% figure in your article, place the command immediately before the
+% \verb|\maketitle| command:
+% \begin{verbatim}
+%   \begin{teaserfigure}
+%     \includegraphics[width=\textwidth]{sampleteaser}
+%     \caption{figure caption}
+%     \Description{figure description}
+%   \end{teaserfigure}
+% \end{verbatim}
 
 \section{Citations and Bibliographies}
 
@@ -522,32 +411,6 @@ consistency in the spelling of the section heading.
 
 Authors should not prepare this section as a numbered or unnumbered {\verb|\section|}; please use the ``{\verb|acks|}'' environment.
 
-\section{Appendices}
-
-If your work needs an appendix, add it before the
-``\verb|\end{document}|'' command at the conclusion of your source
-document.
-
-Start the appendix with the ``\verb|appendix|'' command:
-\begin{verbatim}
-  \appendix
-\end{verbatim}
-and note that in the appendix, sections are lettered, not
-numbered. This document has two appendices, demonstrating the section
-and subsection identification method.
-
-\section{SIGCHI Extended Abstracts}
-
-The ``\verb|sigchi-a|'' template style (available only in \LaTeX\ and
-not in Word) produces a landscape-orientation formatted article, with
-a wide left margin. Three environments are available for use with the
-``\verb|sigchi-a|'' template style, and produce formatted output in
-the margin:
-\begin{itemize}
-\item {\verb|sidebar|}:  Place formatted text in the margin.
-\item {\verb|marginfigure|}: Place a figure in the margin.
-\item {\verb|margintable|}: Place a table in the margin.
-\end{itemize}
 
 %%
 %% The acknowledgments section is defined using the "acks" environment
@@ -555,7 +418,6 @@ the margin:
 %% identification of the section in the article metadata, and the
 %% consistent spelling of the heading.
 \begin{acks}
-To Robert, for the bagels and explaining CMYK and color spaces.
 \end{acks}
 
 %%
@@ -563,40 +425,6 @@ To Robert, for the bagels and explaining CMYK and color spaces.
 %% the bibliography file.
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{sample-base}
-
-%%
-%% If your work has an appendix, this is the place to put it.
-\appendix
-
-\section{Research Methods}
-
-\subsection{Part One}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-malesuada, quam in pulvinar varius, metus nunc fermentum urna, id
-sollicitudin purus odio sit amet enim. Aliquam ullamcorper eu ipsum
-vel mollis. Curabitur quis dictum nisl. Phasellus vel semper risus, et
-lacinia dolor. Integer ultricies commodo sem nec semper.
-
-\subsection{Part Two}
-
-Etiam commodo feugiat nisl pulvinar pellentesque. Etiam auctor sodales
-ligula, non varius nibh pulvinar semper. Suspendisse nec lectus non
-ipsum convallis congue hendrerit vitae sapien. Donec at laoreet
-eros. Vivamus non purus placerat, scelerisque diam eu, cursus
-ante. Etiam aliquam tortor auctor efficitur mattis.
-
-\section{Online Resources}
-
-Nam id fermentum dui. Suspendisse sagittis tortor a nulla mollis, in
-pulvinar ex pretium. Sed interdum orci quis metus euismod, et sagittis
-enim maximus. Vestibulum gravida massa ut felis suscipit
-congue. Quisque mattis elit a risus ultrices commodo venenatis eget
-dui. Etiam sagittis eleifend elementum.
-
-Nam interdum magna at lectus dignissim, ac dignissim lorem
-rhoncus. Maecenas eu arcu ac neque placerat aliquam. Nunc pulvinar
-massa et mattis lacinia.
 
 \end{document}
 \endinput
