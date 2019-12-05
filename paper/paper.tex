@@ -186,14 +186,48 @@
 [DISCUSS HACK FORUMS]
 
 \subsection{Web Scraping}
-[DISCUSS PURPOSE OF WEB SCRAPING]
+Web scraping refers to the process of extracting data from web pages, and the 
+term typically implies the automation of this process. Data extracted from web
+pages will then be parsed to be usable. Often, websites will not provide 
+easily accessible data sets of the website content, which means that a 
+web scraping program must be written to extract the relevant information from
+the HTML present on the page.
 
 \subsection{Sentiment Analysis}
 [DISCUSS AI AND SETINMENT ANALYSIS]
 
 \section{Method}
 
-[DISCUSS IMPLEMENTATION OF OUR WEB SCRAPER]
+\subsection{Web Scraper Implementation}
+We opted to implement our web scraping program in the Python 3 programming
+language. Given the time constraints of the project, we found that Python
+matched our needs well given its rapid development time. In addition, the 
+external library support of Python was deemed essential in traversing
+Hack Forums and extracting the data. We also used Selenium web automation tool
+and its relevant Python bindings. For Python, we also used the "Requests" and 
+"BeautifulSoup" libraries. "Requests" simplifies the creation of HTTP requests 
+to obtain web content, and "BeautifulSoup" is an HTML parser which assists
+in unraveling the web page content to extract. Finally, to actually create
+the requisite Excel file, we used the OpenPyXL library to generate and
+populate the file. 
+
+Since the program's scraping is based on the website's specific content and 
+design (e.g., names of tag classes and id attributes in the page HTML), the web
+scraper can only be used for Hack Forums. Hack Forums provided some unique
+challenges for our scraping. For example, the website seems to heavily rely
+on the PHP programming language. For searching the forum threads, this is 
+troublesome, because the search itself is not a simple web endpoint where the 
+search term can be replaced. This design decision requires the use of Selenium
+to "click" buttons and enter search terms into the website's forms. For each
+page of search results, the URL for the thread is acquired along with the 
+original poster, number of replies, and other relevant information. With the 
+URL for a thread, the comment pages are requested and the relevant information
+per comment is scraped from each page for the thread.
+
+After all the is collected from a search, the data is written to an Excel file
+which contains all the results. With all the data aggregated, manual data
+analysis can begin.
+
 
 [DISCUSS OUR TECHNIQUE OF DATA ANALYSIS - i.e, sentiment analyze all, then manually confirm other details]
 
@@ -214,6 +248,7 @@
 
 % Above was too helpful to uncomment
 [RAW RESULTS DATA, THEN REFINED DATA]
+[TABLES WOULD BE HELPFUL HERE]
 
 \subsection{Key Players}
 [A table would be a nice addition here]
