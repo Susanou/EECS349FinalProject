@@ -269,6 +269,14 @@ the server registeres a hit. In this case, overloading the server with packets j
 for every player on the server but not enough to cause the server to crash allows you to stall the game
 enough for you to be able to win effortlessly in the next round.
 
+\subsubsection{Code Injection}
+"Code Injection is the general term for attack types which consist of injecting code that is then 
+interpreted/executed by the application."\cite{codeinjection}
+Usually these attacks are the result of poor data validation from input/output. Code Injection deffiers from
+Command Injection in the sense that the attacker, in the case of Command Injection, is limited by what the API
+has to offer; while Code Injection is only limited by the language used. The risk from Code Injection if that,
+if the attack is successful, this can lead to loss of data, confidentiality and loss of availability.
+
 \subsection{Account Sales}
 
 
@@ -374,7 +382,31 @@ After analyzing the comments and threads we formed a decent understanding of the
 \section{Solutions}
 \subsection{Video Game Cheats}
 \subsubsection{Mirrored server design}
+The general idea for this is that all client functionality runs either solely on the server
+or alternatively, it runs synchronously between the client and a miror of the game server. This way,
+the state of the game is continously validated where the miror server uses the exact same inputs received
+to validate the results from the client game. If there is ever a discrepency, the client's game session resets 
+and thus prevents cheating by reseting the game state to the last valid state of the game. One problem that isn't so
+common is that this method requires a lot of bandwidth, storage and memory but nowadays, most of those concerns are minimal.
 
+\subsubsection{Pattern Detection/Analyze performance}
+This is a common way of detecting cheats for most online games since it rarely affects players direcly due to its 
+none invasive nature. Like normal anti virus software, some program in the game
+will scan the hard drive to find any know cheat software or cheat codes. Another is that it will analyze the statistical
+data from the player. For example, you might want to see how often a player is able to hit a certain part of the hitboxes
+of other players. If there is a statistical different greater than the expected standard deviation, there is a high chance
+that the player is cheating. However, thsi method also leads to false positive/negative. Very highly skilled players may
+get flagged as cheaters because of how good they are, while others may use cheats but in areas that aren't verified by the
+statistical data and thus be flagged as regular player.
+
+\subsubsection{Player Supervision}
+This is a more intrusive method of detection as it requires someone monitoring the player. Obviously, it is impossible
+to monitor every single player in the game but this method can be used in conjonction with Pattern detection. If a player
+is flagged, he doesn't have to be banned just yet, that could mean that someone can start reviewing that player's 
+gameplay and decide for himself whether or not that player is cheating or not. Some games have implemented player 
+supervision by allowing the community to send reports of disruptive behavior or suspected cheating. 
+Reports can include data such as screenshots, videos, and chatlogs that are then sent to the administrators of the gamef
+for review. If the player reported happens to be cheating any form of punishment can be dispensed.
 
 \subsection{Account Theft}
 % [MFA (already in Fortnite) but suggest mandating it]
