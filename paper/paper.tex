@@ -82,7 +82,7 @@
   \institution{Case Western Reserve University}
   \streetaddress{10900 Euclid Ave}
   \city{Cleveland}
-  \country{Ohio}}
+  \country{USA}}
 \email{eil11@case.edu}
 
 \author{Cameron Hochberg}
@@ -90,7 +90,7 @@
   \institution{Case Western Reserve University}
   \streetaddress{10900 Euclid Ave}
   \city{Cleveland}
-  \country{Ohio}}
+  \country{USA}}
 \email{clh137@case.edu}
 
 \author{Michael Silverman}
@@ -98,7 +98,7 @@
   \institution{Case Western Reserve University}
   \streetaddress{10900 Euclid Ave}
   \city{Cleveland}
-  \country{Ohio}}
+  \country{USA}}
 \email{mhs126@case.edu}
 
 \author{Anthony Smith}
@@ -106,7 +106,7 @@
   \institution{Case Western Reserve University}
   \streetaddress{10900 Euclid Ave}
   \city{Cleveland}
-  \country{Ohio}}
+  \country{USA}}
 \email{aas182@case.edu}
 
 %% By default, the full list of authors will be used in the page
@@ -126,7 +126,12 @@
   in the games. This paper studies the sale of ``crimeware'' connected to
   the Epic Games' ``Fortnite: Battle Royale'' video game. The authors created 
   a webscraping tool to collect large amounts of data from a hacker forum to 
-  analyze key distributers in the economy.
+  analyze key distributers in the economy. After analyzing approximately 7000
+  comments and 113 threads posted on the forum, the authors found that 
+  crimeware called "Aimbots" and the CaaS (Crimeware-as-a-Service) "Account Sales"
+  were the most common things for sale in the Hack Forums marketplaces. The 
+  authors propose several solutions that the developers can implement to 
+  combat the proliferation of underground economy dealing in Fortnite exploits.
 \end{abstract}
 
 %%
@@ -312,9 +317,6 @@ After all the is collected from a search, the data is written to an Excel file
 which contains all the results. With all the data aggregated, manual data
 analysis can begin.
 
-
-[DISCUSS OUR TECHNIQUE OF DATA ANALYSIS - i.e, sentiment analyze all, then manually confirm other details]
-
 However, the data analysis for sentiment does not always apply to the comment.
 For example, if the comment is actually a question or a request to receive a 
 private message, then AI sentiment analysis of the comment is likely irrelevant.
@@ -326,22 +328,20 @@ the collection of data but manually classify it.
 
 \section{Results}
 
-% The title of your work should use capital letters appropriately -
-% \url{https://capitalizemytitle.com/} has useful rules for
-% capitalization. Use the {\verb|title|} command to define the title of
-% your work. If your work has a subtitle, define it with the
-% {\verb|subtitle|} command.  Do not insert line breaks in your title.
+After executing our web scraping suite of programs, we successfully collected
+a large amount of data within the following parameters. Each thread we scraped
+had to have a minimum of 30 replies to the topic, ensuring that only intensely
+discussed crimeware and CaaS would be analyzed. 
 
-% If your title is lengthy, you must define a short version to be used
-% in the page headers, to prevent overlapping text. The \verb|title|
-% command has a ``short title'' parameter:
-% \begin{verbatim}
-%   \title[short title]{full title}
-% \end{verbatim}
-
-% Above was too helpful to uncomment
-[RAW RESULTS DATA, THEN REFINED DATA]
-[TABLES WOULD BE HELPFUL HERE]
+The program successfully searched Hack Forums and found 126 threads with a total
+of 7994 comments. About half of these were video game cheats crimewarea, and the
+other half was Account Sales and in-game currency sales. However, a few threads 
+were ultimated not related to our research. For example, a user had posted
+threads advertising their livestreamed playing of Fortnite. It did not have
+any relation to crimeware. Additionally, our scraper extracted a few general
+discussion threads of people arguing about the game. When we filtered from our
+data these threads and their respective comments, about 900 comments were deemed
+irrelevant from a total of 13 threads.
 
 \subsection{Key Players}
 In the context of our project, the key players in the Fortnite hacker forums are those who have the most threads and/or comments under their names. We defined a user as a key player if they posted more than one thread or more than fifty comments from our 104 threads and 7932 comments. We determined these metrics by manually analyzing the comments and threads and determining who were the minority of more active users. These active user threads will usually take the form of either crimeware or CaaS with the poster selling to whoever can pay with some supposedly “legal” methods scattered throughout. Some of the more popular services are account selling, radar hacks, aimbot hacks and cheaper V-Bucks. Below are two pie charts depicting the thread and comment counts with the labels identifying the greater contributors.
@@ -427,167 +427,18 @@ provide for the safety of a user's account.
 % https://security.googleblog.com/2019/05/new-research-how-effective-is-basic.html
 
 \section{Conclusion}
-[CONCLUDE]
-[ALSO DISCUSS WHAT WE LEARNED (I think she wants that...)]
+The solutions that we proposed can most effectively curtail the growth of 
+crimeware and CaaS in the online video game community of Fortnite. For the game 
+to maintain a strong population of players, the proliferation of crimware must
+be addressed. No player will feel compelled to continue investing time into 
+Fortnite if cheating is unpunished and undetected. Our solutions to video game
+cheats ensure that games are fair for all players, and our solution to account
+sales inhibits the ability of cybercriminals to infiltrate and sell a legitimate
+player's account. The implementation of even a few of our solutions can greatly
+improve the player experience. And the relative ease with which our scraper was 
+implemented could be emulated by video game developers to surveil Hack Forums 
+to prepare countermeasures to new cheats. 
 
-
-% Information on how to make tables
-
-% \section{Tables}
-
-% The ``\verb|acmart|'' document class includes the ``\verb|booktabs|''
-% package --- \url{https://ctan.org/pkg/booktabs} --- for preparing
-% high-quality tables.
-
-% Table captions are placed {\itshape above} the table.
-
-% Because tables cannot be split across pages, the best placement for
-% them is typically the top of the page nearest their initial cite.  To
-% ensure this proper ``floating'' placement of tables, use the
-% environment \textbf{table} to enclose the table's contents and the
-% table caption.  The contents of the table itself must go in the
-% \textbf{tabular} environment, to be aligned properly in rows and
-% columns, with the desired horizontal and vertical rules.  Again,
-% detailed instructions on \textbf{tabular} material are found in the
-% \textit{\LaTeX\ User's Guide}.
-
-% Immediately following this sentence is the point at which
-% Table~\ref{tab:freq} is included in the input file; compare the
-% placement of the table here with the table in the printed output of
-% this document.
-
-% \begin{table}
-%   \caption{Frequency of Special Characters}
-%   \label{tab:freq}
-%   \begin{tabular}{ccl}
-%     \toprule
-%     Non-English or Math&Frequency&Comments\\
-%     \midrule
-%     \O & 1 in 1,000& For Swedish names\\
-%     $\pi$ & 1 in 5& Common in math\\
-%     \$ & 4 in 5 & Used in business\\
-%     $\Psi^2_1$ & 1 in 40,000& Unexplained usage\\
-%   \bottomrule
-% \end{tabular}
-% \end{table}
-
-% To set a wider table, which takes up the whole width of the page's
-% live area, use the environment \textbf{table*} to enclose the table's
-% contents and the table caption.  As with a single-column table, this
-% wide table will ``float'' to a location deemed more
-% desirable. Immediately following this sentence is the point at which
-% Table~\ref{tab:commands} is included in the input file; again, it is
-% instructive to compare the placement of the table here with the table
-% in the printed output of this document.
-
-% \begin{table*}
-%   \caption{Some Typical Commands}
-%   \label{tab:commands}
-%   \begin{tabular}{ccl}
-%     \toprule
-%     Command &A Number & Comments\\
-%     \midrule
-%     \texttt{{\char'134}author} & 100& Author \\
-%     \texttt{{\char'134}table}& 300 & For tables\\
-%     \texttt{{\char'134}table*}& 400& For wider tables\\
-%     \bottomrule
-%   \end{tabular}
-% \end{table*}
-
-% In case we want to add figures to our paper
-% \section{Figures}
-
-% The ``\verb|figure|'' environment should be used for figures. One or
-% more images can be placed within a figure. If your figure contains
-% third-party material, you must clearly identify it as such, as shown
-% in the example below.
-% % \begin{figure}[h]
-% %   \centering
-% %   \includegraphics[width=\linewidth]{sample-franklin}
-% %   \caption{1907 Franklin Model D roadster. Photograph by Harris \&
-% %     Ewing, Inc. [Public domain], via Wikimedia
-% %     Commons. (\url{https://goo.gl/VLCRBB}).}
-% %   \Description{The 1907 Franklin Model D roadster.}
-% % \end{figure}
-
-% Your figures should contain a caption which describes the figure to
-% the reader. Figure captions go below the figure. Your figures should
-% {\bfseries also} include a description suitable for screen readers, to
-% assist the visually-challenged to better understand your work.
-
-% Figure captions are placed {\itshape below} the figure.
-
-% \subsection{The ``Teaser Figure''}
-
-% A ``teaser figure'' is an image, or set of images in one figure, that
-% are placed after all author and affiliation information, and before
-% the body of the article, spanning the page. If you wish to have such a
-% figure in your article, place the command immediately before the
-% \verb|\maketitle| command:
-% \begin{verbatim}
-%   \begin{teaserfigure}
-%     \includegraphics[width=\textwidth]{sampleteaser}
-%     \caption{figure caption}
-%     \Description{figure description}
-%   \end{teaserfigure}
-% \end{verbatim}
-
-% \section{Citations and Bibliographies}
-
-% The use of \BibTeX\ for the preparation and formatting of one's
-% references is strongly recommended. Authors' names should be complete
-% --- use full first names (``Donald E. Knuth'') not initials
-% (``D. E. Knuth'') --- and the salient identifying features of a
-% reference should be included: title, year, volume, number, pages,
-% article DOI, etc.
-
-% The bibliography is included in your source document with these two
-% commands, placed just before the \verb|\end{document}| command:
-% \begin{verbatim}
-%   \bibliographystyle{ACM-Reference-Format}
-%   \bibliography{bibfile}
-% \end{verbatim}
-% where ``\verb|bibfile|'' is the name, without the ``\verb|.bib|''
-% suffix, of the \BibTeX\ file.
-
-% Citations and references are numbered by default. A small number of
-% ACM publications have citations and references formatted in the
-% ``author year'' style; for these exceptions, please include this
-% command in the {\bfseries preamble} (before
-% ``\verb|\begin{document}|'') of your \LaTeX\ source:
-% \begin{verbatim}
-%   \citestyle{acmauthoryear}
-% \end{verbatim}
-
-%   Some examples.  A paginated journal article \cite{Abril07}, an
-%   enumerated journal article \cite{Cohen07}, a reference to an entire
-%   issue \cite{JCohen96}, a monograph (whole book) \cite{Kosiur01}, a
-%   monograph/whole book in a series (see 2a in spec. document)
-%   \cite{Harel79}, a divisible-book such as an anthology or compilation
-%   \cite{Editor00} followed by the same example, however we only output
-%   the series if the volume number is given \cite{Editor00a} (so
-%   Editor00a's series should NOT be present since it has no vol. no.),
-%   a chapter in a divisible book \cite{Spector90}, a chapter in a
-%   divisible book in a series \cite{Douglass98}, a multi-volume work as
-%   book \cite{Knuth97}, an article in a proceedings (of a conference,
-%   symposium, workshop for example) (paginated proceedings article)
-%   \cite{Andler79}, a proceedings article with all possible elements
-%   \cite{Smith10}, an example of an enumerated proceedings article
-%   \cite{VanGundy07}, an informally published work \cite{Harel78}, a
-%   doctoral dissertation \cite{Clarkson85}, a master's thesis:
-%   \cite{anisi03}, an online document / world wide web resource
-%   \cite{Thornburg01, Ablamowicz07, Poker06}, a video game (Case 1)
-%   \cite{Obama08} and (Case 2) \cite{Novak03} and \cite{Lee05} and
-%   (Case 3) a patent \cite{JoeScientist001}, work accepted for
-%   publication \cite{rous08}, 'YYYYb'-test for prolific author
-%   \cite{SaeediMEJ10} and \cite{SaeediJETC10}. Other cites might
-%   contain 'duplicate' DOI and URLs (some SIAM articles)
-%   \cite{Kirschmer:2010:AEI:1958016.1958018}. Boris / Barbara Beeton:
-%   multi-volume works as books \cite{MR781536} and \cite{MR781537}. A
-%   couple of citations with DOIs:
-%   \cite{2004:ITE:1009386.1010128,Kirschmer:2010:AEI:1958016.1958018}. Online
-%   citations: \cite{TUGInstmem, Thornburg01, CTANacmart}. Artifacts:
-%   \cite{R} and \cite{UMassCitations}.
 
 \begin{acks}
   We would like to thank Professor Yanfang "Fanny" Ye of Case Western Reserve
