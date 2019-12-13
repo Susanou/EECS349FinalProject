@@ -20,3 +20,4 @@ test.py
 *.synctex.gz
 *.fdb_latexmk
 paper/paper.pdf
+**/*.cut
