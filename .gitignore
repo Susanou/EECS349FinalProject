@@ -19,5 +19,4 @@ test.py
 .*.lb
 *.synctex.gz
 *.fdb_latexmk
-paper/paper.pdf
 **/*.cut
