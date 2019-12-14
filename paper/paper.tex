@@ -244,14 +244,24 @@ either positive or negative:
 
 Each algorithm gives each comment a probability to be either positive, negative or neutral. It also classifies whether a comment 
 involves a trade or a Q\&A with the thread poster. We sum each algorithm's score 
-and determine based on that score whether the comment is 
-positive, negative or neutral. Below are charts showing the percentage of comments that were deemed positive, negative and neutral, 
-percentage of comments involving a trade and percentage of comments with a Q\&A.
+and determine based on that score whether the comment is positive, negative or neutral. Below are charts showing the percentage of comments that were deemed positive, negative and neutral, percentage of comments involving a trade and percentage of comments with a Q&A. For the trade and Q&A charts, a one represents a trade or Q&A and a zero represents no trade of Q&A.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=.5\textwidth]{SentimentChart.png}
 	\caption{Sentiment Analysis Chart}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.5\textwidth]{TradeChart.png}
+	\caption{Trade Chart}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.5\textwidth]{Q&AChart.png}
+	\caption{Q&A Chart}
 \end{figure}
 
 Along with the webscraper was some manual analysis. Because we could not find out all information about a thread or comment from the
