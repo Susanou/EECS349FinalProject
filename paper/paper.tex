@@ -222,8 +222,27 @@ One of our tasks was to analyze the intentions behind each comment, whether
 they were criticizing the product or, on the contrary, if they were lauding
 the product. For that, we decided to use a Python package provided by scikit-learn.org
 We used 3 different machine learning techniques to classify each comment as
-either positive or negative: Stochastic Gradient Descent (SGD), Naive Bayes, 
-Support Vector machines (SVC). Each algorithm gives each comment a probability to be either positive or negative. 
+either positive or negative:
+\begin{itemize}
+  \item Stochastic Gradient Descent (SGD)
+  \begin{equation*}
+    E(w,b) = \frac{1}{n} \sum\limits_{i=1}^nL(y_i, f(x_i)) + \alpha R(w)
+  \end{equation*} \cite{SGD}
+
+  \item Naive Bayes
+  \begin{equation*}
+    \theta_yi = \frac{N_{yi} + \alpha}{N_y + \alpha n}
+    \newline
+    where\ N_yi = \sum_{x\in T} x_i\ and\ N_y = \sum\limits_{i=1}^n N_yi
+  \end{equation*}\cite{NB}
+
+  \item Support Vector machines (SVC)
+  \begin{equation*}  
+      sgn(\sum\limits_{i=1}^n y_i \alpha_i K(x_i, x) + \rho)    
+  \end{equation*}\cite{SVC}
+\end{itemize}
+
+Each algorithm gives each comment a probability to be either positive or negative. 
 We sum each algorithm's score and determine based on that score whether the comment is positive, negative or neutral. Below is a chart
 showing the percentage of comments that were deemed positive, negative and neutral.
 
