@@ -243,9 +243,17 @@ term typically implies the automation of this process. Data extracted from web
 pages will then be parsed to be usable. Often, websites will not provide 
 easily accessible data sets of the website content, which means that a 
 web scraping program must be written to extract the relevant information from
-the HTML present on the page. Given the sheer volume of information that must
-be collected, the best action is to implement our own program to scrape data 
-from Hack Forums.
+the Hyptertext Markup Language (HTML) present on the page. Unfortnuately, 
+scraping the data is not as simple as traversing the pages and downloadsing the 
+web page's HTML files and manullay inspecting them. Due to the large amount of 
+threads and comments that must be analyzed, a program needs to be created to 
+find the comment texts of each page and aggregate the comments in one file. 
+And since data aggregation can be automated, the traversal of the website 
+should be too. In most cases where a functional Application Programming Interface
+(API) is not available, a web scraping program has to analyze the hyperlinks
+available on the page to identify further pages to traverse and collect data.
+Since forum style websites are neatly categorized for ease of use by visitors, 
+traversal is not complicated.
 
 \subsection{Sentiment Analysis}
 One of our tasks was to analyze the intentions behind each comment, whether
